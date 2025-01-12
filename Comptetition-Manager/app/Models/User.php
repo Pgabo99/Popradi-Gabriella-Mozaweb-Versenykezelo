@@ -17,10 +17,50 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+
+     /* protected $primaryKey = 'email';
+     public $incrementing = false;
+
+     public function getKeyName()
+     {
+         return $this->primaryKey;
+     }
+
+    protected function setKeysForSaveQuery($query)
+    {
+        $keys = $this->getKeyName();
+        if (!is_array($keys)) {
+            return parent::setKeysForSaveQuery($query);
+        }
+
+        return $query->where('email', $this->getAttribute('email'));
+    }
+
+    
+    protected function getKeyForSaveQuery($keyName = null)
+    {
+        if (is_null($keyName)) {
+            $keyName = $this->getKeyName();
+        }
+
+        if (isset($this->original[$keyName])) {
+            return $this->original[$keyName];
+        }
+
+        return $this->getAttribute($keyName);
+    } */
+
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'username',
+        'birth_date',
+        'address',
+        'role',
+        'email_verified_at'
     ];
 
     /**
