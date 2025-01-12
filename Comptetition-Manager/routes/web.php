@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware("auth")->group(function(){
     Route::view('/',"welcome")->name("home");
+    Route::post("/logout", [AuthController::class, "logoutPost"])->name("logout.post");
 });
+
 
 
 Route::middleware("guest")->group(function(){

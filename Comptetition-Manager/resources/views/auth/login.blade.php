@@ -2,7 +2,7 @@
 @section("title", "Bejelentkezés")
 @section("content")
 <main class="mt-5">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 @if(session()->has("success"))
@@ -52,6 +52,7 @@
                             <div class="d-grid mx-auto justify-content-center">
                                 <p>Még nincs felhasználód?<a href="{{route("register")}}" class="link-primary">Regisztráció</a></p>
                             </div>
+
                         </form>
                     </div>
                 </div>
