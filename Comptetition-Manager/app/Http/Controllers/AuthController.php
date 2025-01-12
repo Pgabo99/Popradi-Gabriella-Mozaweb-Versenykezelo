@@ -2,21 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view("auth.login");
     }
 
-    public function register(){
+    public function register()
+    {
         return view("auth.register");
     }
-    public function loginPost(Request $request){
+    public function loginPost(Request $request)
+    {
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required",
+        ]);
+        $credentials = $request->only("email","password");
+        if(Auth::attempt($credentials)){
+            return redirect()->intended(route('home'))->with('success', 'Sikeres bejelentkezés'); 
+        }
+        return redirect(route("login"))->with("error", "Hibás email vagy jelszó."); 
     }
 
-    public function registerPost(Request $request){}
-    public function logout(){}
+    public function registerPost(Request $request)
+    {
+        $request->validate([
+            "email" => "required|email|unique:App\Models\User",
+            "password" => "required",
+            "password_again"=>"required|same:password",
+            "first_name" => "required|string",
+            "last_name" => "required|string",
+            "username" => "nullable|string",
+            "birth_date" => "date",
+            "address" => "nullable|string",
+        ]);
+
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->username = $request->username;
+        $user->birth_date = $request->birth_date;
+        $user->address = $request->address;
+
+        if ($user->save()) {
+            return redirect(route("login"))->with("success", "Sikeres regisztráció!");
+        }
+
+        return redirect(route("register"))->with("error", "Sikertelen regisztráció, próbáld újra");
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect(route('login'))->with('success', 'Sikeres kijelentkezés');
+    }
 
 }

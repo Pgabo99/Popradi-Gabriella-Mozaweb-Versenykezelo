@@ -2,9 +2,19 @@
 @section("title", "Regisztráció")
 @section("content")
 <main class="mt-5">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-4">
+                @if(session()->has("success"))
+                    <div class="alert alert-success">
+                        {{session()->get("success")}}
+                    </div>
+                @endif
+                @if(session()->has("error"))
+                    <div class="alert alert-error">
+                        {{session()->get("error")}}
+                    </div>
+                @endif
                 <div class="card">
                     <h3 class="card-header text-center">Regisztráció</h3>
                     <div class="card-body">
@@ -37,7 +47,7 @@
 
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Email" id="email" class="form-control" name="email"
-                                    required >
+                                    required>
                                 @if($errors->has('email'))
                                     <span class="text-danger">{{$errors->first('email')}}</span>
                                 @endif
@@ -61,9 +71,9 @@
 
 
                             <div class="form-group mb-3">
-                            <label for="birth_date" class="form-label">Születési idő</label>
-                                <input type="date" value="2000-01-01" min="1900-01-01" max="<?= date('Y-m-d'); ?>" id="birth_date"
-                                    class="form-control" name="birth_date">
+                                <label for="birth_date" class="form-label">Születési idő</label>
+                                <input type="date" value="2000-01-01" min="1900-01-01" max="<?= date('Y-m-d'); ?>"
+                                    id="birth_date" class="form-control" name="birth_date" required>
                                 @if($errors->has('birth_date'))
                                     <span class="text-danger">{{$errors->first('birth_date')}}</span>
                                 @endif
@@ -76,14 +86,7 @@
                                     <span class="text-danger">{{$errors->first('address')}}</span>
                                 @endif
                             </div>
-
-                            <div class="form-group mb-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Megjegyzés
-                                    </label>
-                                </div>
-                            </div>
+                            
 
                             <div class="d-grid mx-auto">
                                 <button type="submit" class="btn btn-dark btnk-block">Regisztráció</button>
