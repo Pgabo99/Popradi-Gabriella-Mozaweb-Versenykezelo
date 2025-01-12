@@ -24,11 +24,11 @@ class AuthController extends Controller
             "email" => "required|email",
             "password" => "required",
         ]);
-        $credentials = $request->only("email","password");
-        if(Auth::attempt($credentials)){
-            return redirect()->intended(route('home'))->with('success', 'Sikeres bejelentkezés'); 
+        $credentials = $request->only("email", "password");
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended(route('home'))->with('success', 'Sikeres bejelentkezés');
         }
-        return redirect(route("login"))->with("error", "Hibás email vagy jelszó."); 
+        return redirect(route("login"))->with("error", "Hibás email vagy jelszó.");
     }
 
     public function registerPost(Request $request)
@@ -36,7 +36,7 @@ class AuthController extends Controller
         $request->validate([
             "email" => "required|email|unique:App\Models\User",
             "password" => "required",
-            "password_again"=>"required|same:password",
+            "password_again" => "required|same:password",
             "first_name" => "required|string",
             "last_name" => "required|string",
             "username" => "nullable|string",
@@ -59,9 +59,10 @@ class AuthController extends Controller
 
         return redirect(route("register"))->with("error", "Sikertelen regisztráció, próbáld újra");
     }
-    public function logout()
+    public function logoutPost(Request $request)
     {
         Auth::logout();
+
         return redirect(route('login'))->with('success', 'Sikeres kijelentkezés');
     }
 

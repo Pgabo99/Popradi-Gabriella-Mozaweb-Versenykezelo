@@ -2,7 +2,7 @@
 @section("title", "Regisztráció")
 @section("content")
 <main class="mt-5">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 @if(session()->has("success"))
@@ -90,6 +90,10 @@
 
                             <div class="d-grid mx-auto">
                                 <button type="submit" class="btn btn-dark btnk-block">Regisztráció</button>
+                            </div>
+
+                            <div class="d-grid mx-auto justify-content-center">
+                                <p>Van már felhasználód?<a href="{{route("login")}}" class="link-primary">Bejelentkezés</a></p>
                             </div>
 
                         </form>
