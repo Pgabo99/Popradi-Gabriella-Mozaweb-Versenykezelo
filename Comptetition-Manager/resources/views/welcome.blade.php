@@ -3,7 +3,17 @@
 @section("content")
 <main class="mt-5">
     <div class="container">
+        @if(session()->has("success"))
+            <div class="alert alert-success">
+                {{session()->get("success")}}
+            </div>
+        @endif
 
+        @if(session()->has("message"))
+            <div class="alert alert-warning">
+                {{session()->get("message")}}
+            </div>
+        @endif
         <!-- Slides -->
         <div id="carouselExampleIndicators" class="carousel slide border rounded">
             <div class="carousel-indicators">
