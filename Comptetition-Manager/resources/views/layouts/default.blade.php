@@ -7,6 +7,12 @@
   <title>@yield("title", "Versenykezelő")</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script>
+    function confirmDelete(formId) {
+      if (confirm("Biztos, hogy törölni akarod?"))
+        document.getElementById(formId).submit();
+    }
+  </script>
 </head>
 
 <body>
@@ -28,10 +34,12 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link {{Request::path() ==  '/' ? 'active' : '' }}" aria-current="page" href="{{route("home")}}">Kezdőoldal</a>
+                <a class="nav-link {{Request::path() == '/' ? 'active' : '' }}" aria-current="page"
+                  href="{{route("home")}}">Kezdőoldal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{Request::path() ==  '/competitions' ? 'active' : '' }}" href="{{route("login")}}">Versenyek</a>
+                <a class="nav-link {{Request::path() == '/competitions' ? 'active' : '' }}"
+                  href="{{route("login")}}">Versenyek</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -41,18 +49,21 @@
                 <ul class="dropdown-menu dropdown-menu-dark">
                   @guest
 
-            <li><a class="dropdown-item {{Request::path() ==  '/login' ? 'active' : '' }}" href="{{route("login")}}">Bejelentkezés</a></li>
-            <li><a class="dropdown-item {{Request::path() ==  '/register' ? 'active' : '' }}" href="{{route("register")}}">Regisztráció</a></li>
+            <li><a class="dropdown-item {{Request::path() == '/login' ? 'active' : '' }}"
+              href="{{route("login")}}">Bejelentkezés</a></li>
+            <li><a class="dropdown-item {{Request::path() == '/register' ? 'active' : '' }}"
+              href="{{route("register")}}">Regisztráció</a></li>
 
           @else
-        <li><a class="dropdown-item {{Request::path() ==  '/profile' ? 'active' : '' }}" href="{{route("home")}}">Adataim</a></li>
-        <li><a class="dropdown-item {{Request::path() ==  '/myComp' ? 'active' : '' }}" href="{{route("home")}}">Versenyeim</a></li>
+        <li><a class="dropdown-item" href="{{route("user.show", Auth::id())}}">Adataim</a></li>
+        <li><a class="dropdown-item" href="{{route("home")}}">Versenyeim</a></li>
 
         <li>
         <hr class="dropdown-divider">
         </li>
         <li>
-        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Kijelentkezés</a>
+        <a class="dropdown-item" href="#"
+          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Kijelentkezés</a>
         <form id="logout-form" action="{{ route('logout.post') }}" method="POST" style="display: none;">
           @csrf
         </form>
