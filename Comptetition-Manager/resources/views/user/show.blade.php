@@ -85,22 +85,24 @@
                                 </div>
                             </form>
 
+                            <br>
+                            
+                            <div class="d-grid mx-auto">
+                                <a class="btn btn-danger" href="#"
+                                    onclick="return confirmDelete('delete-form');">Törlés</a>
+                                <form id="delete-form" action="{{ route('user.destroy', $user) }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            </div>
+
                             @if($editing)
                                 <br>
                                 <div class="d-grid mx-auto">
-                                    <a class="btn btn-secondary" href="{{ url()->previous()}}">Mégse</a>
+                                    <a class="btn btn-dark" href="{{ url()->previous()}}">Mégse</a>
                                 </div>
 
-                                <br>
-                                <div class="d-grid mx-auto">
-                                    <a class="btn btn-dark" href="#"
-                                        onclick="event.preventDefault(); document.getElementById('delete-form').submit();">Törlés</a>
-                                    <form id="delete-form" action="{{ route('user.destroy', $user) }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                        @method('delete')
-                                    </form>
-                                </div>
                             @endif
 
 
