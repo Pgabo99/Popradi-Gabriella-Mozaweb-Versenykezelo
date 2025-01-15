@@ -52,7 +52,8 @@
 
         <!-- New Competition-->
         <div class="d-grid gap-2">
-            <button class="btn btn-dark" type="button">Új verseny felvétele</button>
+            <a href="{{route("competitions.create")}}" class="btn btn-dark">Új verseny
+                felvétele</a>
         </div>
     </div>
 </main>
