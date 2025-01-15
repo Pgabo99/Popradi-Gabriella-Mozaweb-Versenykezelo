@@ -35,11 +35,11 @@ class AuthController extends Controller
     {
         $request->validate([
             "email" => "required|email|unique:App\Models\User",
-            "password" => "required",
+            "password" => "required|min:8|max:30",
             "password_again" => "required|same:password",
             "first_name" => "required|string",
             "last_name" => "required|string",
-            "username" => "nullable|string",
+            "username" => "nullable|string|max:30",
             "birth_date" => "date",
             "address" => "nullable|string",
         ]);
