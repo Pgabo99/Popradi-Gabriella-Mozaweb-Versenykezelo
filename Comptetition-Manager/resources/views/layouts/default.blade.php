@@ -46,6 +46,10 @@
                 <a class="nav-link {{Request::path() == '/competitions/create' ? 'active' : '' }}"
                   href="{{route("competitions.create")}}">Versenyek</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link {{Request::path() == '/rounds/create' ? 'active' : '' }}"
+                  href="{{route("rounds.create")}}">Fordulók</a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -77,10 +81,6 @@
                 </ul>
               </li>
             </ul>
-            <!--  <form class="d-flex mt-3" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-success" type="submit">Search</button>
-            </form> -->
           </div>
         </div>
       </div>

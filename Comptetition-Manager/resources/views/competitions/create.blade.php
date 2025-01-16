@@ -1,5 +1,5 @@
 @extends("layouts.default")
-@section("title", "Verseny Felvétele")
+@section("title", "Versenyek")
 @section("content")
 <main class="mt-5">
     <div class="container">
@@ -97,7 +97,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
                             <button type="button" class="btn btn-primary" id="compSaveBTn">Mentés</button>
                         </div>
                     </div>
@@ -105,37 +105,45 @@
             </form>
         </div>
 
+        <div class="card">
+            <div class="card-header">
+                <!-- Button trigger modal -->
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#Competition"
+                        id="addCompetition" width="100%"> Új verseny </button>
+                </div>
 
-        <div class="row">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark " data-bs-toggle="modal"
-                                    data-bs-target="#Competition" id="addCompetition" width="100%">
+            </div>
+            <!-- Rounds table-->
+            <div class="card-body">
 
-                                    Új verseny felvétele
-                                </button>
-            <div class="table-responsive">
-                <table class="table table-sm table-hover caption-top "
-                    id="competitions-table">
-                    <caption>Versenyek listája</caption>
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Név</th>
-                            <th scope="col">Év</th>
-                            <th scope="col">Leírás</th>
-                            <th scope="col">Helyszín</th>
-                            <th scope="col">Mettől</th>
-                            <th scope="col">Meddig</th>
-                            <th scope="col">Elérhető nyelvek</th>
-                            <th scope="col">Férőhely</th>
-                            <th scope="col">Díj</th>
-                            <th scope="col">Nevezési díj</th>
-                            <th scope="col">Művelet</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover align-middle caption-bottom table-bordered"
+                        id="competitions-table">
+                        <caption>Fordulók megtekintéséhez kattints egy sorra</caption>
+                        <thead class="table-light align-middle">
+                            <tr>
+                                <th colspan="11" style="text-align: center;">Versenyek</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Név</th>
+                                <th scope="col">Év</th>
+                                <th scope="col">Leírás</th>
+                                <th scope="col">Helyszín</th>
+                                <th scope="col">Mettől</th>
+                                <th scope="col">Meddig</th>
+                                <th scope="col">Nyelvek</th>
+                                <th scope="col">Férőhely</th>
+                                <th scope="col">Díj</th>
+                                <th scope="col">Nevezési díj</th>
+                                <th scope="col">Művelet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -148,16 +156,16 @@
             serverSide: true,
             ajax: "{{route('competitions.index')}}",
             columns: [
-                { data: 'comp_name' },
-                { data: 'comp_year' },
-                { data: 'description' },
-                { data: 'address' },
-                { data: 'comp_start' },
-                { data: 'comp_end' },
-                { data: 'languages' },
-                { data: 'comp_limit' },
-                { data: 'prize' },
-                { data: 'entry_fee' },
+                { data: 'comp_name', className: "clickable" },
+                { data: 'comp_year', className: "clickable" },
+                { data: 'description', className: "clickable" },
+                { data: 'address', className: "clickable" },
+                { data: 'comp_start', className: "clickable" },
+                { data: 'comp_end', className: "clickable" },
+                { data: 'languages', className: "clickable" },
+                { data: 'comp_limit', className: "clickable" },
+                { data: 'prize', className: "clickable" },
+                { data: 'entry_fee', className: "clickable" },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
 
@@ -272,6 +280,12 @@
             $('#comp_edit').val(null);
 
             $('.error-msg').html('');
+        });
+
+        //Click on a row
+        $('#competitions-table tbody').on('click', 'td.clickable', function () {
+            window.location.href = "{{ route('rounds.create')}}";
+
         });
     });
 </script>

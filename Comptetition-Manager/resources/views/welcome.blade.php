@@ -14,6 +14,13 @@
                 {{session()->get("message")}}
             </div>
         @endif
+
+         <!-- New Competition-->
+         <div class="d-grid gap-2">
+            <a href="{{route("competitions.create")}}" class="btn btn-dark">Új verseny
+                felvétele</a>
+        </div>
+
         <!-- Slides -->
         <div id="carouselExampleIndicators" class="carousel slide border rounded">
             <div class="carousel-indicators">
@@ -50,11 +57,7 @@
             </button>
         </div>
 
-        <!-- New Competition-->
-        <div class="d-grid gap-2">
-            <a href="{{route("competitions.create")}}" class="btn btn-dark">Új verseny
-                felvétele</a>
-        </div>
+       
     </div>
 </main>
 @endsection
