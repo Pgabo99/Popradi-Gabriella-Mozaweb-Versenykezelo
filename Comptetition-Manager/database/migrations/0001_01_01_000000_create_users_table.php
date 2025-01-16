@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->date('birth_date');
             $table->string('address')->nullable();
-            $table->enum('role',['Competitor','Admin'])->default('Competitor');
+            $table->enum('user_type',['Competitor','Admin'])->default('Competitor');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
