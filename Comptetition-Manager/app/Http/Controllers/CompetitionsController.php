@@ -119,4 +119,9 @@ class CompetitionsController extends Controller
             'success' => 'Sikeres törlés!'
         ], 201);
     }
+
+    public function show(){
+        $competition = Competitions::all();
+        return view("competitions.show",["competitions"=> $competition]);
+    }
 }

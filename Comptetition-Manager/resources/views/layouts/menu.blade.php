@@ -23,6 +23,12 @@
                                 href="{{route("home")}}">Kezdőoldal</a>
                         </li>
 
+                        <!-- Competitions -->
+                        <li class="nav-item">
+                            <a class="nav-link {{Request::path() == '/competitions/show' ? 'active' : '' }}" aria-current="page"
+                                href="{{route("competitions.show")}}">Versenyek</a>
+                        </li>
+
                         <!-- Pages available only for Admins -->
                         @if(Auth::check() && auth()->user()->user_type == "Admin")
 
