@@ -3,7 +3,7 @@
 @section("content")
 <main class="mt-5">
     <div class="container">
-        <!-- Modal -->
+        <!-- Modal for the Creating and Editing-->
         <div class="modal fade competitorModel" id="Competitor" tabindex="-1" aria-labelledby="CompetitorTitle"
             aria-hidden="true">
             <form id="competitorForm">
@@ -35,7 +35,8 @@
                                 <select class="form-control" id="round_id" name="round_id">
                                     @foreach ($rounds as $round)
                                         <option value="{{$round->id}}">
-                                            {{$round->comp_name . ' - ' . $round->comp_year . ' - ' . $round->round_name}}</option>
+                                            {{$round->comp_name . ' - ' . $round->comp_year . ' - ' . $round->round_name}}
+                                        </option>
 
                                     @endforeach
                                 </select>
@@ -85,6 +86,8 @@
                             </div>
 
                         </div>
+
+                        <!-- Close and Save Buttons -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
                             <button type="button" class="btn btn-primary" id="compSaveBTn">Mentés</button>
@@ -97,16 +100,19 @@
         <div class="card">
             <div class="card-header">
 
-                <!-- Button trigger modal -->
+                <!-- New competitor modal trigger button -->
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#Competitor"
                         id="addCompetitor" width="100%">Versenyző nevezése </button>
                 </div>
+
+                <!--Selection between avalaible rounds -->
                 <select class="form-control" id="roundSelect" name="roundSelect">
                     <option value="all" selected>Forduló szűrése...</option>
                     @foreach ($rounds as $round)
                         <option value="{{$round->id}}">
-                            {{$round->comp_name . ' - ' . $round->comp_year . ' - ' . $round->round_name}}</option>
+                            {{$round->comp_name . ' - ' . $round->comp_year . ' - ' . $round->round_name}}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -142,6 +148,7 @@
 <script>
     $(document).ready(function () {
 
+        //Binding data for the Competitors Table
         var table = $('#competitors-table').DataTable({
             processing: true,
             serverSide: true,
@@ -159,16 +166,20 @@
 
         });
 
+        // Deleting the error messages
         $('.error-msg').html('');
 
         //Saving/Updating data
         var form = $('#competitorForm')[0];
         $('#compSaveBTn').click(function () {
 
+            //Disabling the save button during action
             $('compSaveBTn').attr('disabled', true);
             $('compSaveBTn').html('Folyamatban...');
 
             var formData = new FormData(form);
+
+            // Saving the datas
             $.ajax({
                 url: '{{route("competitors.store")}}',
                 method: 'POST',
@@ -265,7 +276,7 @@
             $('.error-msg').html('');
         });
 
-
+        // Round selection 
         $('#roundSelect').change(function () {
             if (this.value === 'all') {
                 table.search('').columns().search('').draw();

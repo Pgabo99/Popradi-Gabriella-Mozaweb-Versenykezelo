@@ -3,20 +3,23 @@
 @section("content")
 <main class="mt-5">
     <div class="container">
+
+        <!-- Alert if everything went smooth -->
         @if(session()->has("success"))
             <div class="alert alert-success">
                 {{session()->get("success")}}
             </div>
         @endif
 
+        <!-- Alert if there was an error -->
         @if(session()->has("message"))
             <div class="alert alert-warning">
                 {{session()->get("message")}}
             </div>
         @endif
 
-         <!-- New Competition-->
-         <div class="d-grid gap-2">
+        <!-- New Competition-->
+        <div class="d-grid gap-2">
             <a href="{{route("competitions.create")}}" class="btn btn-dark">Új verseny
                 felvétele</a>
         </div>
@@ -57,7 +60,7 @@
             </button>
         </div>
 
-       
+
     </div>
 </main>
 @endsection

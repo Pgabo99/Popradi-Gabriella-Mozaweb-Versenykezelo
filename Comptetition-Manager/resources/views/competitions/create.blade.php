@@ -3,7 +3,8 @@
 @section("content")
 <main class="mt-5">
     <div class="container">
-        <!-- Modal -->
+
+          <!-- Modal for the Creating and Editing-->
         <div class="modal fade competitionModel" id="Competition" tabindex="-1" aria-labelledby="CompetitionTitle"
             aria-hidden="true">
             <form id="competitionForm">
@@ -107,16 +108,17 @@
 
         <div class="card">
             <div class="card-header">
-                <!-- Button trigger modal -->
+
+                <!-- New competition modal trigger button -->
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#Competition"
                         id="addCompetition" width="100%"> Új verseny </button>
                 </div>
 
             </div>
-            <!-- Rounds table-->
-            <div class="card-body">
 
+            <!-- Competitions table-->
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-sm table-hover align-middle caption-bottom table-bordered"
                         id="competitions-table">
@@ -151,6 +153,7 @@
 <script>
     $(document).ready(function () {
 
+ //Binding data for the Competitions Table
         var table = $('#competitions-table').DataTable({
             processing: true,
             serverSide: true,
@@ -171,16 +174,20 @@
 
         });
 
+         // Deleting the error messages
         $('.error-msg').html('');
 
         //Saving/Updating data
         var form = $('#competitionForm')[0];
         $('#compSaveBTn').click(function () {
 
+            //Disabling the save button during action
             $('compSaveBTn').attr('disabled', true);
             $('compSaveBTn').html('Folyamatban...');
 
             var formData = new FormData(form);
+
+             // Saving the datas
             $.ajax({
                 url: '{{route("competitions.store")}}',
                 method: 'POST',
@@ -282,7 +289,7 @@
             $('.error-msg').html('');
         });
 
-        //Click on a row
+        //Click on a table row redirects us to the round page
         $('#competitions-table tbody').on('click', 'td.clickable', function () {
             window.location.href = "{{ route('rounds.create')}}";
 
