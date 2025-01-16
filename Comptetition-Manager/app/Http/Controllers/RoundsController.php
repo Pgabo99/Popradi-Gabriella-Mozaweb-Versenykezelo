@@ -128,4 +128,15 @@ class RoundsController extends Controller
             'success' => 'Sikeres törlés!'
         ], 201);
     }
+
+    /**
+     * Summary of show
+     * @param mixed $comp_name
+     * @param mixed $comp_year
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show($comp_name,$comp_year){
+        $round= Rounds::where('comp_name','=', $comp_name)->where('comp_year','=', $comp_year)->get();
+        return view("rounds.show",["rounds"=> $round]);
+    }
 }

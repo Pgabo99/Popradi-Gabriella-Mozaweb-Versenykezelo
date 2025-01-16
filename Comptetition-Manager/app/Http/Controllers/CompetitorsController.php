@@ -117,4 +117,27 @@ class CompetitorsController extends Controller
             'success' => 'Sikeres törlés!'
         ], 201);
     }
+
+    public function userStore(Request $request, $round_id, )
+    {
+        if (!Competitors::where('user_email', auth()->user()->email)->where('round_id', $round_id)->first()) {
+            $data = array(
+                'user_email' => auth()->user()->email,
+                'round_id' => $round_id,
+                'points' => 0,
+                'placement' => 0,
+                'correct_answ' => 0,
+                'wrong_answ' => 0,
+                'blank_answ' => 0
+            );
+            if (Competitors::create($data)) {
+                return response()->json([
+                    'success' => 'Sikeres verseny felvétel'
+                ], 201);
+            }
+        }
+        return response()->json([
+            'error' => 'Erre már jelentkeztél'
+        ], 404);
+    }
 }

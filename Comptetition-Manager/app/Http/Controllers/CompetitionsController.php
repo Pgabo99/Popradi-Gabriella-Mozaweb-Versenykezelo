@@ -120,6 +120,10 @@ class CompetitionsController extends Controller
         ], 201);
     }
 
+    /**
+     * Redirect to the Competitions page 
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(){
         $competition = Competitions::all();
         return view("competitions.show",["competitions"=> $competition]);

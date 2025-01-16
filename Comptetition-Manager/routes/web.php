@@ -19,6 +19,12 @@ Route::middleware("auth")->group(function () {
 
     // Competitions
     Route::get('/competitions/show', [CompetitionsController::class, 'show'])->name('competitions.show');
+
+    // Rounds
+    Route::get('/rounds/{comp_name}/{comp_year}/show', [RoundsController::class, 'show'])->name('rounds.show');
+
+    // Competitors
+    Route::post('/competitors/{round_id}/store', [CompetitorsController::class, 'userStore'])->name('competitors.user.store');
 });
 
 //Routes for logged in Admins
