@@ -9,7 +9,10 @@ class Competitors extends Model
 {
     use HasFactory;
 
+    //Primary keys
     protected $primaryKey = ['user_email', 'round_id'];
+
+    //Disabling auto increment
     public $incrementing = false;
 
     /**
@@ -48,11 +51,17 @@ class Competitors extends Model
         return $this->getAttribute($keyName);
     }
 
+    /**
+     * Return the primarykeys
+     * @return array  Primarykeys
+     */
+
     public function getKeyName()
     {
         return $this->primaryKey;
     }
 
+    //Columns
     protected $fillable = [
         'user_email',
         'round_id',
@@ -62,5 +71,7 @@ class Competitors extends Model
         'wrong_answ',
         'blank_answ',
     ];
+
+    //Disabling the created_at, updated_at
     public $timestamps = false;
 }
