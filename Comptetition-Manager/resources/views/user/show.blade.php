@@ -86,7 +86,7 @@
                             </form>
 
                             <br>
-                            
+
                             <div class="d-grid mx-auto">
                                 <a class="btn btn-danger" href="#"
                                     onclick="return confirmDelete('delete-form');">Törlés</a>
@@ -112,4 +112,11 @@
         </div>
     </div>
 </main>
+<script>
+    function confirmDelete(formId) {
+        if (confirm("Biztos, hogy törölni akarod?"))
+            document.getElementById(formId).submit();
+    }
+
+</script>
 @endsection
