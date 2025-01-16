@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class CompetitorsController extends Controller
 {
+    /**
+     * Returns the data from the Competitors table
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         $competitors = Competitors::select('user_email', 'round_id', 'points', 'placement', 'correct_answ', 'wrong_answ', 'blank_answ');
@@ -24,14 +29,24 @@ class CompetitorsController extends Controller
                 ->make(true);
         }
     }
+
+    /**
+     *  Redirects to the Rounds page
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create()
     {
         $rounds = Rounds::all();
-        
-        $users  =  User::get();
-        return view("competitors.create",['rounds'=>$rounds,'users'=>$users]);
+
+        $users = User::get();
+        return view("competitors.create", ['rounds' => $rounds, 'users' => $users]);
     }
 
+    /**
+     * reates/Updates a Competitor 
+     * @param \Illuminate\Http\Request $request
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -70,6 +85,12 @@ class CompetitorsController extends Controller
         }
     }
 
+    /**
+     * Returns the editable data, if it exists
+     * @param mixed $user_email
+     * @param mixed $round_id
+     * @return TModel
+     */
     public function edit($user_email, $round_id)
     {
         $competitor = Competitors::where('user_email', $user_email)->where('round_id', $round_id)->first();
@@ -78,7 +99,13 @@ class CompetitorsController extends Controller
         }
         return $competitor;
     }
-
+    /**
+     * Deletes the data, if it exists
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $user_email
+     * @param mixed $round_id
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function destroy(Request $request, $user_email, $round_id)
     {
         $competitor = Competitors::where('user_email', $user_email)->where('round_id', $round_id)->first();

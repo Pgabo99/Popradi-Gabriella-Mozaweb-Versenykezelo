@@ -9,7 +9,10 @@ class Competitions extends Model
 {
     use HasFactory;
 
+    //Primary keys
     protected $primaryKey = ['comp_name', 'comp_year'];
+
+    //Disabling auto increment
     public $incrementing = false;
 
     /**
@@ -48,11 +51,16 @@ class Competitions extends Model
         return $this->getAttribute($keyName);
     }
 
+    /**
+     * Return the primarykeys
+     * @return array  Primarykeys
+     */
     public function getKeyName()
     {
         return $this->primaryKey;
     }
 
+    //Columns
     protected $fillable = [
         'comp_name',
         'comp_year',
@@ -65,5 +73,7 @@ class Competitions extends Model
         'comp_limit',
         'entry_fee',
     ];
+
+    //Disabling the created_at, updated_at
     public $timestamps = false;
 }

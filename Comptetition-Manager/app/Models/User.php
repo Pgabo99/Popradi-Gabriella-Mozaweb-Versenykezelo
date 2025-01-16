@@ -19,11 +19,14 @@ class User extends Authenticatable
      */
 
 
+    //Primary key
     protected $primaryKey = 'email';
-    public $incrementing = false;
     protected $keyType = 'string';
 
+    //Disabling auto increment
+    public $incrementing = false;
 
+    //Columns
     protected $fillable = [
         'email',
         'password',

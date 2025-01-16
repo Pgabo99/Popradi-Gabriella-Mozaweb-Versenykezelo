@@ -9,6 +9,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class RoundsController extends Controller
 {
+    /**
+     * Returns the data from the Rounds table
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         $rounds = Rounds::select('id', 'round_name', 'comp_name', 'comp_year', 'description', 'questions_number', 'round_start', 'round_end', 'correct_point', 'wrong_point', 'blank_point');
@@ -21,6 +26,11 @@ class RoundsController extends Controller
                 ->make(true);
         }
     }
+
+    /**
+     * Redirects to the Rounds page
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create()
     {
         $competitions = Competitions::all();
@@ -32,6 +42,11 @@ class RoundsController extends Controller
         return view("rounds.create", ['compString' => $compString]);
     }
 
+    /**
+     * Creates/Updates a Round
+     * @param \Illuminate\Http\Request $request
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
 
@@ -82,6 +97,11 @@ class RoundsController extends Controller
 
     }
 
+    /**
+     * Returns the editable data, if it exists
+     * @param mixed $id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function edit($id)
     {
         $round = Rounds::find($id);
@@ -91,6 +111,12 @@ class RoundsController extends Controller
         return $round;
     }
 
+    /**
+     * Deletes the data, if it exists
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $id
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function destroy(Request $request, $id)
     {
         $round = Rounds::find($id);
@@ -101,12 +127,5 @@ class RoundsController extends Controller
         return response()->json([
             'success' => 'Sikeres törlés!'
         ], 201);
-    }
-
-    public function avalaibleComps()
-    {
-
-
-
     }
 }

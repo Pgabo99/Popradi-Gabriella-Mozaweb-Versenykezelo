@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rounds extends Model
 {
-    protected $fillable=[
+    //Columns
+    protected $fillable = [
         'id',
         'round_name',
         'description',
@@ -19,6 +20,9 @@ class Rounds extends Model
         'round_start',
         'round_end'
     ];
+
+    //Disabling the created_at, updated_at
+
     public $timestamps = false;
 
 }

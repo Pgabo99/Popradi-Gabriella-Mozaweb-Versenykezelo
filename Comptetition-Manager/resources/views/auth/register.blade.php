@@ -5,22 +5,29 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
+
+                <!-- Alert if everything was successfull -->
                 @if(session()->has("success"))
                     <div class="alert alert-success">
                         {{session()->get("success")}}
                     </div>
                 @endif
+
+                <!-- Alert if there was an error -->
                 @if(session()->has("error"))
                     <div class="alert alert-error">
                         {{session()->get("error")}}
                     </div>
                 @endif
+
+                <!--Registration card -->
                 <div class="card">
                     <h3 class="card-header text-center">Regisztráció</h3>
                     <div class="card-body">
                         <form method="POST" action="{{route("register.post")}}">
                             @csrf
 
+                            <!--Last name -->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Vezetéknév" id="last_name" class="form-control"
                                     name="last_name" required autofocus>
@@ -29,6 +36,7 @@
                                 @endif
                             </div>
 
+                            <!--First name -->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Keresztnév" id="first_name" class="form-control"
                                     name="first_name" required>
@@ -37,6 +45,7 @@
                                 @endif
                             </div>
 
+                            <!--Username -->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Felhasználónév" id="username" class="form-control"
                                     name="username">
@@ -45,6 +54,7 @@
                                 @endif
                             </div>
 
+                            <!--Email -->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Email" id="email" class="form-control" name="email"
                                     required>
@@ -53,6 +63,7 @@
                                 @endif
                             </div>
 
+                            <!--Password -->
                             <div class="form-group mb-3">
                                 <input type="password" placeholder="Jelszó" id="password" class="form-control"
                                     name="password" required>
@@ -61,6 +72,7 @@
                                 @endif
                             </div>
 
+                            <!--Password again -->
                             <div class="form-group mb-3">
                                 <input type="password" placeholder="Jelszó mégegyszer" id="password_again"
                                     class="form-control" name="password_again" required>
@@ -69,7 +81,7 @@
                                 @endif
                             </div>
 
-
+                            <!--Birth date -->
                             <div class="form-group mb-3">
                                 <label for="birth_date" class="form-label">Születési idő</label>
                                 <input type="date" value="2000-01-01" min="1900-01-01" max="<?= date('Y-m-d'); ?>"
@@ -79,6 +91,7 @@
                                 @endif
                             </div>
 
+                            <!--Adderess -->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Lakcím" id="address" class="form-control"
                                     name="address">
@@ -86,14 +99,16 @@
                                     <span class="text-danger">{{$errors->first('address')}}</span>
                                 @endif
                             </div>
-                            
 
+                            <!--Registration submit button-->
                             <div class="d-grid mx-auto">
                                 <button type="submit" class="btn btn-dark btnk-block">Regisztráció</button>
                             </div>
 
+                            <!--Link for redirecting to the Login page-->
                             <div class="d-grid mx-auto justify-content-center">
-                                <p>Van már felhasználód?<a href="{{route("login")}}" class="link-primary">Bejelentkezés</a></p>
+                                <p>Van már felhasználód?<a href="{{route("login")}}"
+                                        class="link-primary">Bejelentkezés</a></p>
                             </div>
 
                         </form>

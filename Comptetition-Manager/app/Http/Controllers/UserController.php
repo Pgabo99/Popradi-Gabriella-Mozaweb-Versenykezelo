@@ -11,7 +11,9 @@ class UserController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Redirects the user for the Profile edit page
+     * @param \App\Models\User $user the edtiable in user
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse 
      */
     public function show(User $user)
     {
@@ -23,7 +25,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Switching for editing mode at the Pofile edit page
+     * @param \App\Models\User $user
+     * @return \Illuminate\Contracts\View\View Pofile edit page
      */
     public function edit(User $user)
     {
@@ -32,11 +36,14 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates the User based on the Profile page editing form 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user 
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
-        $data=$request->validate([
+        $data = $request->validate([
             "email" => "required|email",
             "first_name" => "required|string",
             "last_name" => "required|string",
@@ -44,7 +51,7 @@ class UserController extends Controller
             "birth_date" => "date",
             "address" => "nullable|string",
         ]);
-        if ($data["email"]!= $user->email) {
+        if ($data["email"] != $user->email) {
             $request->validate([
                 "email" => "unique:App\Models\User",
             ]);
@@ -58,7 +65,9 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deletes the user 
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {

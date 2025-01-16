@@ -3,7 +3,8 @@
 @section("content")
 <main class="mt-5">
     <div class="container">
-        <!-- Modal -->
+
+        <!-- Modal for the Creating and Editing-->
         <div class="modal fade roundModel" id="Round" tabindex="-1" aria-labelledby="RoundTitle" aria-hidden="true">
             <form id="roundForm">
                 <div class="modal-dialog">
@@ -94,6 +95,7 @@
 
 
                         </div>
+                        <!-- Close and Save Buttons -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
                             <button type="button" class="btn btn-primary" id="roundSaveBTn">Mentés</button>
@@ -106,13 +108,16 @@
 
         <div class="card">
             <div class="card-header">
-                <!-- Button trigger modal -->
+
+                <!-- New round modal trigger button -->
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#Round"
                         id="addRound" width="100%">
                         Új forduló felvétele
                     </button>
                 </div>
+
+                <!--Selection between avalaible competitions -->
                 <select class="form-control" id="competitionSelect" name="competitionSelect">
                     <option value="all" selected>Verseny választása...</option>
                     @foreach ($compString as $competition){
@@ -121,6 +126,7 @@
                     @endforeach
                 </select>
             </div>
+
             <!-- Rounds table-->
             <div class="card-body">
                 <div class="table-responsive card-text">
@@ -156,7 +162,7 @@
 <script>
     $(document).ready(function () {
 
-        //Rounds Table
+        //Binding data for the Rounds Table
         var table = $('#rounds-table').DataTable({
             processing: true,
             serverSide: true,
@@ -178,17 +184,20 @@
 
         });
 
+        // Deleting the error messages
         $('.error-msg').html('');
 
         //Saving/Updating data
         var form = $('#roundForm')[0];
         $('#roundSaveBTn').click(function () {
 
+            //Disabling the save button during action
             $('roundSaveBTn').attr('disabled', true);
             $('roundSaveBTn').html('Folyamatban...');
 
             var formData = new FormData(form);
 
+            // Saving the datas
             $.ajax({
                 url: '{{route("rounds.store")}}',
                 method: 'POST',
@@ -288,6 +297,7 @@
             $('.error-msg').html('');
         });
 
+        // Competition selection 
         $('#competitionSelect').change(function () {
             let comp_name = this.value.split(' - ')[0];
             let comp_year = this.value.split(' - ')[1];
