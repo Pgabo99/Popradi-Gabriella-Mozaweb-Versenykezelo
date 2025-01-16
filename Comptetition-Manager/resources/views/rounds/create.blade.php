@@ -297,7 +297,7 @@
                 table.column(2).search(comp_name).draw();
                 table.column(3).search(comp_year).draw();
             }
-        })
+        });
     });
 </script>
 @endsection

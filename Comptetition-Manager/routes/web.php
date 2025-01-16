@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompetitionsController;
+use App\Http\Controllers\CompetitorsController;
 use App\Http\Controllers\RoundsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,13 @@ Route::middleware("auth")->group(function () {
     Route::post('/rounds/store',[RoundsController::class,'store'])->name('rounds.store');
     Route::get('/rounds/{id}/edit',[RoundsController::class,'edit'])->name('rounds.edit');
     Route::delete('/rounds/{id}/delete',[RoundsController::class,'destroy'])->name('rounds.destroy');
+
+    //Competitors
+    Route::get('/competitors/index',[CompetitorsController::class,'index'])->name('competitors.index');
+    Route::get('/competitors/create',[CompetitorsController::class,'create'])->name('competitors.create');
+    Route::post('/competitors/store',[CompetitorsController::class,'store'])->name('competitors.store');
+    Route::get('/competitors/{user_email}/{round_id}/edit',[CompetitorsController::class,'edit'])->name('competitors.edit');
+    Route::delete('/competitors/{user_email}/{round_id}/delete',[CompetitorsController::class,'destroy'])->name('competitors.destroy');
 
 });
 
