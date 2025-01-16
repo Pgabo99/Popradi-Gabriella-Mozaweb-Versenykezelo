@@ -8,6 +8,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CompetitionsController extends Controller
 {
+    /**
+     * Returns the data from the Competitions table
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         $competitions = Competitions::select('comp_name', 'comp_year', 'prize', 'description', 'address', 'comp_start', 'comp_end', 'languages', 'comp_limit', 'entry_fee');
@@ -20,11 +25,21 @@ class CompetitionsController extends Controller
                 ->make(true);
         }
     }
+
+    /**
+     * Redirects to the Rounds page
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create()
     {
         return view("competitions.create");
     }
 
+    /**
+     * Creates/Updates a Round
+     * @param \Illuminate\Http\Request $request
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -71,6 +86,12 @@ class CompetitionsController extends Controller
         }
     }
 
+    /**
+     * Returns the editable data, if it exists
+     * @param mixed $comp_name
+     * @param mixed $comp_year
+     * @return TModel
+     */
     public function edit($comp_name, $comp_year)
     {
         $competition = Competitions::where('comp_name', $comp_name)->where('comp_year', $comp_year)->first();
@@ -80,6 +101,13 @@ class CompetitionsController extends Controller
         return $competition;
     }
 
+    /**
+     *  Deletes the data, if it exists
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $comp_name
+     * @param mixed $comp_year
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function destroy(Request $request, $comp_name, $comp_year)
     {
         $competition = Competitions::where('comp_name', $comp_name)->where('comp_year', $comp_year)->first();

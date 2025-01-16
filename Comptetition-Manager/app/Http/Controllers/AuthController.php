@@ -9,15 +9,30 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /**
+     * Redirects to the Login page
+     * @return \Illuminate\Contracts\View\View
+     */
     public function login()
     {
         return view("auth.login");
     }
 
+
+    /**
+     * Redirects to the Register page
+     * @return \Illuminate\Contracts\View\View
+     */
     public function register()
     {
         return view("auth.register");
     }
+
+    /**
+     * Login into existing user account
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function loginPost(Request $request)
     {
         $request->validate([
@@ -31,6 +46,11 @@ class AuthController extends Controller
         return redirect(route("login"))->with("error", "Hibás email vagy jelszó.");
     }
 
+    /**
+     * Creating a new user
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function registerPost(Request $request)
     {
         $request->validate([
@@ -59,6 +79,12 @@ class AuthController extends Controller
 
         return redirect(route("register"))->with("error", "Sikertelen regisztráció, próbáld újra");
     }
+
+    /**
+     * Logout
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logoutPost(Request $request)
     {
         Auth::logout();
