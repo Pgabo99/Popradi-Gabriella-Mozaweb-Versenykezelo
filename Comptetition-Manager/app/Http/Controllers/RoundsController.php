@@ -136,10 +136,11 @@ class RoundsController extends Controller
      * @param mixed $comp_year
      * @return \Illuminate\Contracts\View\View
      */
-    public function show($comp_name,$comp_year){
-        $round= Rounds::where('comp_name','=', $comp_name)->where('comp_year','=', $comp_year)->get();
-        $scoreBoard= Competitors::orderByRaw('points DESC' )->get();
-        return view("rounds.show",["rounds"=> $round,"scoreBoard"=> $scoreBoard]);
+    public function show($comp_name, $comp_year)
+    {
+        $round = Rounds::where('comp_name', '=', $comp_name)->where('comp_year', '=', $comp_year)->get();
+        $scoreBoard = Competitors::orderByRaw('points DESC')->get();
+        return view("rounds.show", ["rounds" => $round, "scoreBoard" => $scoreBoard]);
     }
 
     /**
@@ -147,11 +148,12 @@ class RoundsController extends Controller
      * @param mixed $user_email
      * @return \Illuminate\Contracts\View\View
      */
-    public function showUser($user_email){
+    public function showUser($user_email)
+    {
         $userRounds = Rounds::select()
-        ->leftJoin('competitors','competitors.round_id','=','rounds.id')
-        ->where('competitors.user_email', '=' ,$user_email)
-        ->get();
-        return view("rounds.user-show",["userRounds"=> $userRounds]);
+            ->leftJoin('competitors', 'competitors.round_id', '=', 'rounds.id')
+            ->where('competitors.user_email', '=', $user_email)
+            ->get();
+        return view("rounds.user-show", ["userRounds" => $userRounds]);
     }
 }

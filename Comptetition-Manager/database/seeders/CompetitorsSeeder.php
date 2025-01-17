@@ -13,7 +13,7 @@ class CompetitorsSeeder extends Seeder
      */
     public function run(): void
     {
-        if(DB::table('competitors')->count() == 0){
+        if (DB::table('competitors')->count() == 0) {
             DB::table('competitors')->insert([
                 [
                     'user_email' => 'FolyekonySzilard@gmail.com',
@@ -123,7 +123,7 @@ class CompetitorsSeeder extends Seeder
                     'wrong_answ' => 0,
                     'blank_answ' => 0
                 ],
-                
+
             ]);
         }
     }

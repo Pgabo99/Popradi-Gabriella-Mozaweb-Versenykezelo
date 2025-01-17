@@ -4,6 +4,7 @@
 <main class="mt-5">
     <div class="container">
         <div class="row">
+            <h3> Versenyek</h3>
             @foreach ($competitions as $competition)
                 <div class="competitions">
                     <div class="card border-secondary mb-3">
