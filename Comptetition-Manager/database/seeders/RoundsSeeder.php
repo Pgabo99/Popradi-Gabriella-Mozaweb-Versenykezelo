@@ -16,7 +16,7 @@ class RoundsSeeder extends Seeder
         if (DB::table('rounds')->count() == 0) {
             DB::table('rounds')->insert([
                 [
-                    'id'=>1,
+                    'id' => 1,
                     'round_name' => 'Jelentkezzetek, és tervezzük újra a jövőt!',
                     'comp_name' => 'Edison Kids',
                     'comp_year' => '2025',
@@ -29,7 +29,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2025-02-17 18:00:00',
                 ],
                 [
-                    'id'=>2,
+                    'id' => 2,
                     'round_name' => 'Találjuk meg együtt a legjobb ötletet!',
                     'comp_name' => 'Edison Kids',
                     'comp_year' => '2025',
@@ -42,7 +42,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2025-04-07 18:00:00',
                 ],
                 [
-                    'id'=>3,
+                    'id' => 3,
                     'round_name' => 'Dolgozzuk ki a megoldást!',
                     'comp_name' => 'Edison Kids',
                     'comp_year' => '2025',
@@ -55,7 +55,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2025-05-27 18:00:00',
                 ],
                 [
-                    'id'=>4,
+                    'id' => 4,
                     'round_name' => 'Mutassátok be, mire jutottatok!',
                     'comp_name' => 'Edison Kids',
                     'comp_year' => '2025',
@@ -68,7 +68,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2025-05-30 18:00:00',
                 ],
                 [
-                    'id'=>5,
+                    'id' => 5,
                     'round_name' => 'Irodalmi Verseny',
                     'comp_name' => 'Arany János',
                     'comp_year' => '2024',
@@ -81,7 +81,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2024-12-06 18:00:00',
                 ],
                 [
-                    'id'=>6,
+                    'id' => 6,
                     'round_name' => '1. forduló',
                     'comp_name' => 'Csizmazia Természetismereti Verseny',
                     'comp_year' => '2024',
@@ -94,7 +94,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2024-03-11 18:00:00',
                 ],
                 [
-                    'id'=>7,
+                    'id' => 7,
                     'round_name' => '2. forduló',
                     'comp_name' => 'Csizmazia Természetismereti Verseny',
                     'comp_year' => '2024',
@@ -107,7 +107,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2024-03-18 18:00:00',
                 ],
                 [
-                    'id'=>8,
+                    'id' => 8,
                     'round_name' => '3. forduló',
                     'comp_name' => 'Csizmazia Természetismereti Verseny',
                     'comp_year' => '2024',
@@ -120,7 +120,7 @@ class RoundsSeeder extends Seeder
                     'round_end' => '2024-03-25 18:00:00',
                 ],
                 [
-                    'id'=>9,
+                    'id' => 9,
                     'round_name' => '4. forduló',
                     'comp_name' => 'Csizmazia Természetismereti Verseny',
                     'comp_year' => '2024',

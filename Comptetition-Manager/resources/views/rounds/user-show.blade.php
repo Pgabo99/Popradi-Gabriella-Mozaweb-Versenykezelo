@@ -9,10 +9,10 @@
             <div class="alert alert-danger error-msg">
                 Sikertelen, próbáld újra
             </div>
-
+            <h3>Nevezett fordulóim</h3>
             <!-- Cards for the users rounds -->
             @foreach ($userRounds as $round)
-                <div class="col-sm-6 mb-3 mb-sm-0 round" id="{{$round->id}}">
+                <div class=" round" id="{{$round->id}}">
                     <div class="card border-secondary mb-3">
                         <div class="card-header">
                             {{$round->comp_name . ' - ' . $round->comp_year . ' - ' . $round->round_name}}
@@ -36,10 +36,6 @@
                                         data-id="{{$round->id}}" data-user_email="{{$round->user_email}}">Visszalépés a
                                         versenyből</a>
                                 @endif
-                                <br> Eredménytábla
-                                @foreach ($scoreBoard as $scores)
-                                    <br> {{$scores->placement . '. ' . $scores->user_email . ": " . $scores->points . " pont"}}
-                                @endforeach
                             </p>
                         </div>
                     </div>

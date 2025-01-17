@@ -10,6 +10,7 @@
                 Egyszer már felvetted
             </div>
 
+            <h3> Fordulók</h3>
             <!-- Cards for the avalaible rounds -->
             @foreach ($rounds as $round)
                 <div class="round">
