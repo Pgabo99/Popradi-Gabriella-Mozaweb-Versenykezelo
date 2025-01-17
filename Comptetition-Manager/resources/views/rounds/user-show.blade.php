@@ -31,7 +31,7 @@
                                 <br>Helyezés - összpontszám:
                                 {{$round->placement . ' - ' . $round->points}}
 
-                                @if(strtotime($round->round_end) > strtotime(now()))
+                                @if(strtotime($round->round_end) > strtotime(now()) && (auth()->user()->email==$round->user_email||(auth()->user()->user_type=='Admin')))
                                     <br> <a href="javascript:void(0)" class="btn-sm btn btn-dark entryButton d-grid gap-2"
                                         data-id="{{$round->id}}" data-user_email="{{$round->user_email}}">Visszalépés a
                                         versenyből</a>

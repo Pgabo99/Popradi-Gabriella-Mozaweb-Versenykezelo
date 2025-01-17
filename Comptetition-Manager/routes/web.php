@@ -26,6 +26,7 @@ Route::middleware("auth")->group(function () {
 
     // Competitors
     Route::post('/competitors/{round_id}/store', [CompetitorsController::class, 'userStore'])->name('competitors.user.store');
+    Route::delete('/competitors/{user_email}/{round_id}/delete', [CompetitorsController::class, 'destroy'])->name('competitors.destroy');
 });
 
 //Routes for logged in Admins
@@ -49,7 +50,7 @@ Route::middleware("isAdmin")->group(function () {
     Route::get('/competitors/create', [CompetitorsController::class, 'create'])->name('competitors.create');
     Route::post('/competitors/store', [CompetitorsController::class, 'store'])->name('competitors.store');
     Route::get('/competitors/{user_email}/{round_id}/edit', [CompetitorsController::class, 'edit'])->name('competitors.edit');
-    Route::delete('/competitors/{user_email}/{round_id}/delete', [CompetitorsController::class, 'destroy'])->name('competitors.destroy');
+   
 });
 
 //Routes for Guests
