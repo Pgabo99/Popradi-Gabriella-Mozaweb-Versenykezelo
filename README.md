@@ -20,14 +20,15 @@ Admin: admin@admin.com password: Admin123
 # How do I run this?
 
 1. Start XAMPP
-2. Start mySQL
-3. Create a competition_manager table
-4. Pull git repository
-5. Enter the competition-manager folder 
-6. php artisan migrate
-7. php artisan db:seed --class=UserSeeder
-8. php artisan db:seed --class=CompetitionsSeeder
-9. php artisan db:seed --class=RoundsSeeder
-10. php artisan db:seed --class=CompetitorsSeeder
-11. php artisan serve
-12. Click on the link
+2. Start MySQL
+3. Start Apache
+4. Create a competition_manager table
+5. Pull git repository
+6. Enter the competition-manager folder 
+7. php artisan migrate
+8. php artisan db:seed --class=UserSeeder
+9. php artisan db:seed --class=CompetitionsSeeder
+10. php artisan db:seed --class=RoundsSeeder
+11. php artisan db:seed --class=CompetitorsSeeder
+12. php artisan serve
+13. Click on the link
