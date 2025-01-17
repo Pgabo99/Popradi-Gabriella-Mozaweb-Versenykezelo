@@ -138,7 +138,7 @@ class RoundsController extends Controller
      */
     public function show($comp_name,$comp_year){
         $round= Rounds::where('comp_name','=', $comp_name)->where('comp_year','=', $comp_year)->get();
-        $scoreBoard= Competitors::orderByRaw('placement')->get();
+        $scoreBoard= Competitors::orderByRaw('points DESC' )->get();
         return view("rounds.show",["rounds"=> $round,"scoreBoard"=> $scoreBoard]);
     }
 

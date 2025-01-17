@@ -12,7 +12,7 @@
 
             <!-- Cards for the avalaible rounds -->
             @foreach ($rounds as $round)
-                <div class="col-sm-6 mb-3 mb-sm-0 round">
+                <div class="round">
                     <div class="card border-secondary mb-3">
                         <div class="card-header">
                             {{$round->comp_name . ' - ' . $round->comp_year . ' - ' . $round->round_name}}

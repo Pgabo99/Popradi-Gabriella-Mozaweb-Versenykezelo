@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             @foreach ($competitions as $competition)
-                <div class="col-sm-6 mb-3 mb-sm-0 competitions">
+                <div class="competitions">
                     <div class="card border-secondary mb-3">
                         <div class="card-header">{{$competition->comp_name . ' - ' . $competition->comp_year}}</div>
                         <div class="card-body text-secondary">
