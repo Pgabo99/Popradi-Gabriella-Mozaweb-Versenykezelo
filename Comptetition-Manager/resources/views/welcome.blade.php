@@ -18,11 +18,18 @@
             </div>
         @endif
 
+        @if(auth()->user()->user_type=='Admin')
         <!-- New Competition-->
         <div class="d-grid gap-2">
             <a href="{{route("competitions.create")}}" class="btn btn-dark">Új verseny
                 felvétele</a>
         </div>
+        @else
+         <!-- Avalaible Competitions-->
+         <div class="d-grid gap-2">
+            <a href="{{route("competitions.show")}}" class="btn btn-dark">Versenyek böngészése</a>
+        </div>
+        @endif
 
         <!-- Slides -->
         <div id="carouselExampleIndicators" class="carousel slide border rounded">

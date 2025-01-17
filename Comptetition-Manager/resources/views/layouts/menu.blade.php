@@ -35,7 +35,7 @@
                             <!--The dropdown -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Admin
+                                Admin felület
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
 
@@ -80,7 +80,7 @@
                                 @else
                                     <!-- Logged in users-->
                                     <li><a class="dropdown-item" href="{{route("user.show", Auth::id())}}">Adataim</a></li>
-                                    <li><a class="dropdown-item" href="{{route("home")}}">Versenyeim</a></li>
+                                    <li><a class="dropdown-item" href="{{route("rounds.user.show",Auth::user()->email)}}">Versenyeim</a></li>
 
                                     <li>
                                         <hr class="dropdown-divider">

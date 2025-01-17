@@ -22,6 +22,7 @@ Route::middleware("auth")->group(function () {
 
     // Rounds
     Route::get('/rounds/{comp_name}/{comp_year}/show', [RoundsController::class, 'show'])->name('rounds.show');
+    Route::get('/rounds/{user_email}/show', [RoundsController::class, 'showUser'])->name('rounds.user.show');
 
     // Competitors
     Route::post('/competitors/{round_id}/store', [CompetitorsController::class, 'userStore'])->name('competitors.user.store');

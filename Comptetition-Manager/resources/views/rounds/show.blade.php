@@ -10,7 +10,7 @@
                 Egyszer már felvetted
             </div>
 
-
+            <!-- Cards for the avalaible rounds -->
             @foreach ($rounds as $round)
                 <div class="col-sm-6 mb-3 mb-sm-0 round">
                     <div class="card border-secondary mb-3">
@@ -25,11 +25,20 @@
                                 <br>Kérdések száma: {{$round->questions_number}}
                                 <br>Pontok (Jó/Rossz/Üres):
                                 {{$round->correct_point . '/' . $round->wrong_point . '/' . $round->blank_point}}
-                                <br> <a href="javascript:void(0)" class="btn-sm btn btn-dark entryButton d-grid gap-2"
-                                    data-id="{{$round->id}}">Benevezés</a>
-                            <form id="compForm">
-                                <input type="hidden" id="round_id" value="{{$round->id}}">
-                            </form>
+
+                                @if(strtotime($round->round_end) > strtotime(now()))
+                                    <a href="javascript:void(0)" class="btn-sm btn btn-dark entryButton d-grid gap-2"
+                                        data-id="{{$round->id}}">Benevezés</a>
+                                @else
+                                    <br> Vége a versenynek
+                                @endif
+
+                                <br> Eredménytábla
+                                @foreach ($scoreBoard as $scores)
+                                    @if($round->id == $scores->round_id)
+                                        <br> {{$scores->placement . '. ' . $scores->user_email . ": " . $scores->points . " pont"}}
+                                    @endif
+                                @endforeach
                             </p>
                         </div>
                     </div>
@@ -41,12 +50,12 @@
 </main>
 <script>
     $(document).ready(function () {
-        $('.error-msg').attr('hidden',true);
+        $('.error-msg').attr('hidden', true);
 
         //Joining rounds with the logged in user
         $('.entryButton').on('click', function () {
             let round_id = $(this).data('id');
-            $('.error-msg').attr('hidden',true);
+            $('.error-msg').attr('hidden', true);
             $.ajax({
                 url: '{{url("competitors", '')}}' + '/' + round_id + '/store',
                 method: 'POST',
@@ -54,7 +63,7 @@
                     swal("Sikeresen beneveztél!", response.success, "success");
                 },
                 error: function (error) {
-                    $('.error-msg').attr('hidden',false);
+                    $('.error-msg').attr('hidden', false);
                 }
             });
         });
