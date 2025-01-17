@@ -15,11 +15,17 @@ Route::middleware("auth")->group(function () {
     //User
     Route::view('/', "welcome")->name("home");
     Route::post("/logout", [AuthController::class, "logoutPost"])->name("logout.post");
-
     Route::resource("user", UserController::class)->only("show", "edit", "update", "destroy");
 
+    // Competitions
+    Route::get('/competitions/show', [CompetitionsController::class, 'show'])->name('competitions.show');
 
+    // Rounds
+    Route::get('/rounds/{comp_name}/{comp_year}/show', [RoundsController::class, 'show'])->name('rounds.show');
+    Route::get('/rounds/{user_email}/show', [RoundsController::class, 'showUser'])->name('rounds.user.show');
 
+    // Competitors
+    Route::post('/competitors/{round_id}/store', [CompetitorsController::class, 'userStore'])->name('competitors.user.store');
 });
 
 //Routes for logged in Admins

@@ -119,4 +119,13 @@ class CompetitionsController extends Controller
             'success' => 'Sikeres törlés!'
         ], 201);
     }
+
+    /**
+     * Redirect to the Competitions page 
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show(){
+        $competition = Competitions::all();
+        return view("competitions.show",["competitions"=> $competition]);
+    }
 }

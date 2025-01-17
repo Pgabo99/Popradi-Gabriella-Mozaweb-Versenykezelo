@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competitions;
+use App\Models\Competitors;
 use App\Models\Rounds;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -127,5 +128,30 @@ class RoundsController extends Controller
         return response()->json([
             'success' => 'Sikeres törlés!'
         ], 201);
+    }
+
+    /**
+     * Redirecting to the page where based on the competition rounds are shown
+     * @param mixed $comp_name
+     * @param mixed $comp_year
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show($comp_name,$comp_year){
+        $round= Rounds::where('comp_name','=', $comp_name)->where('comp_year','=', $comp_year)->get();
+        $scoreBoard= Competitors::orderByRaw('placement')->get();
+        return view("rounds.show",["rounds"=> $round,"scoreBoard"=> $scoreBoard]);
+    }
+
+    /**
+     * Redirecting to the page where the users rounds are shown
+     * @param mixed $user_email
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showUser($user_email){
+        $userRounds = Rounds::select()
+        ->leftJoin('competitors','competitors.round_id','=','rounds.id')
+        ->where('competitors.user_email', '=' ,$user_email)
+        ->get();
+        return view("rounds.user-show",["userRounds"=> $userRounds]);
     }
 }

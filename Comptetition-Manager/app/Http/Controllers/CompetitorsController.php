@@ -43,7 +43,7 @@ class CompetitorsController extends Controller
     }
 
     /**
-     * reates/Updates a Competitor 
+     * Creates/Updates a Competitor 
      * @param \Illuminate\Http\Request $request
      * @return mixed|\Illuminate\Http\JsonResponse
      */
@@ -116,5 +116,34 @@ class CompetitorsController extends Controller
         return response()->json([
             'success' => 'Sikeres törlés!'
         ], 201);
+    }
+
+    /**
+     *  Creates a Competitor joining for the loggen in users
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $round_id
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
+    public function userStore(Request $request, $round_id, )
+    {
+        if (!Competitors::where('user_email', auth()->user()->email)->where('round_id', $round_id)->first()) {
+            $data = array(
+                'user_email' => auth()->user()->email,
+                'round_id' => $round_id,
+                'points' => 0,
+                'placement' => 0,
+                'correct_answ' => 0,
+                'wrong_answ' => 0,
+                'blank_answ' => 0
+            );
+            if (Competitors::create($data)) {
+                return response()->json([
+                    'success' => 'Sikeres verseny felvétel'
+                ], 201);
+            }
+        }
+        return response()->json([
+            'error' => 'Erre már jelentkeztél'
+        ], 404);
     }
 }

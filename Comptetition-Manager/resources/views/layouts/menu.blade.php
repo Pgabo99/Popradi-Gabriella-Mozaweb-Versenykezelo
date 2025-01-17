@@ -23,13 +23,19 @@
                                 href="{{route("home")}}">Kezdőoldal</a>
                         </li>
 
+                        <!-- Competitions -->
+                        <li class="nav-item">
+                            <a class="nav-link {{Request::path() == '/competitions/show' ? 'active' : '' }}" aria-current="page"
+                                href="{{route("competitions.show")}}">Versenyek</a>
+                        </li>
+
                         <!-- Pages available only for Admins -->
                         @if(Auth::check() && auth()->user()->user_type == "Admin")
 
                             <!--The dropdown -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Admin
+                                Admin felület
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
 
@@ -74,7 +80,7 @@
                                 @else
                                     <!-- Logged in users-->
                                     <li><a class="dropdown-item" href="{{route("user.show", Auth::id())}}">Adataim</a></li>
-                                    <li><a class="dropdown-item" href="{{route("home")}}">Versenyeim</a></li>
+                                    <li><a class="dropdown-item" href="{{route("rounds.user.show",Auth::user()->email)}}">Versenyeim</a></li>
 
                                     <li>
                                         <hr class="dropdown-divider">
