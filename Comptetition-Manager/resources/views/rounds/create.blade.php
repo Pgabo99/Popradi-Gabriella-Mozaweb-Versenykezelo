@@ -132,7 +132,7 @@
                 <div class="table-responsive card-text">
                     <table class="table table-sm table-hover caption-bottom align-middle table-bordered"
                         id="rounds-table">
-                        <caption>Fordulók listája</caption>
+                        <caption>Versenyzők megtekintéséhez kattints egy sorra</caption>
                         <thead class="table-light align-middle">
                             <tr>
                                 <th colspan="12" style="text-align: center;">Fordulók</th>
@@ -168,17 +168,17 @@
             serverSide: true,
             ajax: "{{route('rounds.index')}}",
             columns: [
-                { data: 'id' },
-                { data: 'round_name' },
-                { data: 'comp_name' },
-                { data: 'comp_year' },
-                { data: 'description' },
-                { data: 'questions_number' },
-                { data: 'round_start' },
-                { data: 'round_end' },
-                { data: 'correct_point' },
-                { data: 'wrong_point' },
-                { data: 'blank_point' },
+                { data: 'id', className: "clickable" },
+                { data: 'round_name', className: "clickable" },
+                { data: 'comp_name', className: "clickable" },
+                { data: 'comp_year', className: "clickable" },
+                { data: 'description', className: "clickable" },
+                { data: 'questions_number', className: "clickable" },
+                { data: 'round_start', className: "clickable" },
+                { data: 'round_end', className: "clickable" },
+                { data: 'correct_point', className: "clickable" },
+                { data: 'wrong_point', className: "clickable" },
+                { data: 'blank_point', className: "clickable" },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
 
@@ -307,6 +307,11 @@
                 table.column(2).search(comp_name).draw();
                 table.column(3).search(comp_year).draw();
             }
+        });
+
+         //Click on a table row redirects us to the competitors page
+         $('#rounds-table tbody').on('click', 'td.clickable', function () {
+            window.location.href = "{{ route('competitors.create')}}";
         });
     });
 </script>
